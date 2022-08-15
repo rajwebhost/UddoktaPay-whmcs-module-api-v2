@@ -392,7 +392,7 @@ class UddoktaPay
 
         $invoiceId = $executePayment['metadata']['invoice_id'];
         $systemUrl = Setting::getValue('SystemURL');
-        $url = $systemUrl . 'viewinvoice.php?id=' . $invoiceId;
+        $url = $systemUrl . '/viewinvoice.php?id=' . $invoiceId;
 
         if (isset($executePayment['status']) && $executePayment['status'] === 'COMPLETED') {
 
