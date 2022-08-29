@@ -427,7 +427,10 @@ class UddoktaPay
             }
         }
 
-        die('Invalid Response');
+        return [
+            'status'    => 'error',
+            'url'       => $url . '&error=The payment is pending for verification.',
+        ];
     }
 }
 
