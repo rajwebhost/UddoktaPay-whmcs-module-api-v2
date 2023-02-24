@@ -69,7 +69,8 @@ function uddoktapay_link($params)
 function uddoktapay_payment_url($params)
 {
     // UuddoktaPay Gateway Specific Settings
-    $api_url = $params['apiUrl'];
+    $host = parse_url($params['apiUrl'],  PHP_URL_HOST);
+    $apiUrl = "https://{$host}/api/checkout-v2";
 
     // Gateway Configuration Parameters
     $apiKey = $params['apiKey'];
@@ -113,7 +114,7 @@ function uddoktapay_payment_url($params)
 
     // Contact UuddoktaPay Gateway and get URL data
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $api_url);
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postfields));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
