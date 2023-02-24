@@ -283,12 +283,13 @@ class UddoktaPay
 
         // Global Data
         $apiUrl = trim($this->gatewayParams['apiUrl']);
+        $host = parse_url($apiUrl,  PHP_URL_HOST);
+        $verifyUrl = "https://{$host}/api/verify-payment";
+        
         $apiKey = trim($this->gatewayParams['apiKey']);
 
         // Generate API URL
         $invoice_id = strip_tags(trim($_POST['invoice_id']));
-        $apiUrl = str_replace('api/checkout-v2', 'api/verify-payment/', $apiUrl);
-        $verifyUrl = trim($apiUrl . $invoice_id);
 
         // Set data
         $data = [
